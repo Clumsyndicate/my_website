@@ -1,4 +1,5 @@
 @import 'config';
+@import 'menu';
 
 @mixin easeOut {
   transition: all 0.5s ease-out;
@@ -30,14 +31,23 @@
 * {
   box-sizing: border-box;
 }
-
+/*
+@font-face {
+  font-family: "San Francisco";
+  font-weight: 800;
+  src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff");
+}
+*/
 body {
   @include background;
+  letter-spacing: normal;
   background: $primary-color;
   color: #fff;
   height: 100%;
   margin: 0;
-  font-family: 'San Francisco';
+  //font-family: 'San Francisco';
+  //font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu;
+  font-family: 'Open Sans', sans-serif;
   line-height: 1.5;
 }
 
