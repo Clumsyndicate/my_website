@@ -5,14 +5,17 @@ $home-imge: url(https://clumsyndicate.github.io/my_website/dist/img/background.j
 $background-opacity: 0.5;
 
 // Media Query Mixins
-@mixin mediaSm {
-  @media screen and (max-width: 500px) {
+
+
+
+@mixin mediaMd {
+  @media screen and (max-width: 768px) {
     @content;
   }
 }
 
-@mixin mediaMd {
-  @media screen and (max-width: 768px) {
+@mixin mediaSm {
+  @media screen and (max-width: 500px) {
     @content;
   }
 }
