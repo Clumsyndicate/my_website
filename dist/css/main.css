@@ -24,8 +24,8 @@
   position: fixed;
   top: 0;
   width: 100%;
-  opacity: 0.9;
-  visibility: hidden; }
+  visibility: hidden;
+  opacity: 0.95; }
   .menu.show {
     visibility: visible; }
   .menu-branding, .menu-nav {
@@ -43,7 +43,8 @@
     background: #373737;
     list-style: none;
     transform: translate3d(0, -100%, 0);
-    transition: all 0.5s ease-out; }
+    transition: all 0.5s ease-out;
+    opacity: 0.9; }
     .menu-nav.show {
       transform: translate3d(0, 0, 0); }
   .menu-branding {
@@ -55,17 +56,22 @@
     .menu-branding .portrait {
       height: 250px;
       width: 250px;
-      background: url("..");
+      background: url("/dist/img/portrait.jpg");
+      background-size: contain;
       border-radius: 50%;
       border: solid 3px #eece1a;
-      opacity: 1;
+      /*
+      .portrait_large {
+        max-height: auto;
+        max-width: 100%;
+
+      }
+      opacity: 1.0; */
       align-items: center; }
-      .menu-branding .portrait .portrait_large {
-        max-height: 100%;
-        max-width: 100%; }
   .menu .nav-item {
     transform: translate3d(600px, 0, 0);
-    transition: all 0.5s ease-out; }
+    transition: all 0.5s ease-out;
+    opacity: 0.9; }
     .menu .nav-item.show {
       transform: translate3d(0, 0, 0); }
     .menu .nav-item .nav-link {
@@ -227,7 +233,7 @@ main {
     background: rgba(81, 81, 81, 0.5);
     padding: 0.5rem;
     border-bottom: #eece1a 5px solid;
-    box-shadow: 5px 10px; }
+    box-shadow: 5px 10px #444; }
 
 footer {
   text-align: right;
