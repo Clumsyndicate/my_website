@@ -35,7 +35,7 @@
     transform: translate3d(100%,0,0);
 
     .portrait {
-      background: url('../img/portrait_small.jpg');
+      background: url('img/portrait_small.jpg');
       width: 150px;
       height: 150px;
     }
@@ -44,10 +44,9 @@
 
 @include mediaSm {
   main#home, main#about {
-
     padding: 2rem;
+    // margin-top: vh;
     h1 {
-      margin-top: 10vh;
       &.lg-heading {
         font-size: 4rem;
       }

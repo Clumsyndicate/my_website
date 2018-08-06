@@ -57,7 +57,12 @@
       width: 250px;
       background: url("..");
       border-radius: 50%;
-      border: solid 3px #eece1a; }
+      border: solid 3px #eece1a;
+      opacity: 1;
+      align-items: center; }
+      .menu-branding .portrait .portrait_large {
+        max-height: 100%;
+        max-width: 100%; }
   .menu .nav-item {
     transform: translate3d(600px, 0, 0);
     transition: all 0.5s ease-out; }
@@ -110,19 +115,17 @@
     height: 25vh;
     transform: translate3d(100%, 0, 0); }
     .menu-branding .portrait {
-      background: url("../img/portrait_small.jpg");
+      background: url("img/portrait_small.jpg");
       width: 150px;
       height: 150px; } }
 
 @media screen and (max-width: 500px) {
   main#home, main#about {
     padding: 2rem; }
-    main#home h1, main#about h1 {
-      margin-top: 10vh; }
-      main#home h1.lg-heading, main#about h1.lg-heading {
-        font-size: 4rem; }
-      main#home h1.sm-heading, main#about h1.sm-heading {
-        font-size: 1rem; } }
+    main#home h1.lg-heading, main#about h1.lg-heading {
+      font-size: 4rem; }
+    main#home h1.sm-heading, main#about h1.sm-heading {
+      font-size: 1rem; } }
 
 * {
   box-sizing: border-box; }
@@ -165,6 +168,7 @@ h1, h2, h3 {
   h1.sm-heading, h2.sm-heading, h3.sm-heading {
     margin-bottom: 2rem;
     padding: 0.2rem 1rem;
+    font-family: Roboto;
     background-color: rgba(73, 73, 73, 0.5); }
 
 a {
@@ -193,22 +197,38 @@ main {
     overflow: hidden; }
     main h1 {
       margin-top: 20vh; }
+      main h1.about {
+        margin-top: 5vh; }
+  main#about {
+    font-family: serif; }
+    main#about .lg-heading {
+      font-family: Roboto; }
 
 .about-info {
   display: grid;
   grid-gap: 30px;
   grid-template-areas: 'bioimage bio bio' 'job1 job2 job3';
   grid-template-columns: repeat(3, 1fr); }
+  .about-info .bio-image {
+    grid-area: bioimage;
+    margin: auto;
+    border-radius: 50%;
+    border: #eece1a 3px solid; }
+  .about-info .bio {
+    grid-area: bio;
+    font-size: 1.5rem; }
+  .about-info .job-1 {
+    grid-area: job1; }
+  .about-info .job-2 {
+    grid-area: job2; }
+  .about-info .job-3 {
+    grid-area: job3; }
+  .about-info .job {
+    background: rgba(81, 81, 81, 0.5);
+    padding: 0.5rem;
+    border-bottom: #eece1a 5px solid;
+    box-shadow: 5px 10px; }
 
-.bio-image {
-  grid-area: bioimage;
-  margin: auto;
-  border-radius: 50%;
-  border: #eece1a 3px solid; }
-
-.bio {
-  grid-area: bio;
-  font-size: 1.5rem; }
-
-.job-1 {
-  grid-area: job1; }
+footer {
+  text-align: right;
+  margin-right: 10px; }
