@@ -1,6 +1,7 @@
 @import 'config';
 @import 'menu';
 @import 'mobile';
+@import 'work';
 
 @mixin easeOut {
   transition: all 0.5s ease-out;
@@ -63,7 +64,7 @@ h1, h2, h3 {
   &.sm-heading {
     margin-bottom: 2rem;
     padding: 0.2rem 1rem;
-    font-family: Roboto;
+    //font-family: Roboto;
     background-color: rgba(lighten($primary-color, 2), 0.5);
   }
 }
@@ -108,43 +109,41 @@ main {
     }
   }
   &#about {
-    font-family: serif;
+    font-family: 'Roboto', sans-serif;;
     .lg-heading {
       font-family: Roboto;
     }
   }
+  
 }
 
 .about-info {
   display: grid;
   grid-gap: 30px;
   grid-template-areas:
-  'bioimage bio bio'
-  'job1 job2 job3';
+  'bio bio job1'
+  'job2 job3 job4';
   grid-template-columns: repeat(3, 1fr);
-
-  .bio-image {
-    grid-area: bioimage;
-    margin: auto;
-    border-radius: 50%;
-    border: $secondary-color 3px solid;
-  }
 
   .bio {
     grid-area: bio;
     font-size: 1.5rem;
   }
 
-  .job-1 {
+  .physicist {
     grid-area: job1;
   }
 
-  .job-2 {
+  .programmer {
     grid-area: job2;
   }
 
-  .job-3 {
+  .maker {
     grid-area: job3;
+  }
+
+  .guitarist {
+    grid-area: job4;
   }
 
   .job {
@@ -152,6 +151,13 @@ main {
     padding: 0.5rem;
     border-bottom: $secondary-color 5px solid;
     box-shadow: 5px 10px #444;
+    h3 {
+
+    }
+    .link {
+      text-align: right;
+      margin-bottom: 0;
+    }
   }
 
 }

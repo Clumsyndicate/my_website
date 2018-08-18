@@ -1,0 +1,18 @@
+
+main {
+  &#work {
+    overflow: auto;
+    .lg-heading {
+      margin-top: 0;
+      font-size: 4rem;
+    }
+    .sm-heading {
+      margin-top: 2rem;
+    }
+    .link {
+      text-decoration: underline;
+      color: $secondary-color;
+      
+    }
+  }
+}
