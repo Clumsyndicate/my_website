@@ -1,0 +1,16 @@
+$pad: 15rem;
+
+body.git {
+    .icon {
+        text-align: center;
+    }
+
+    h1 {
+        color: $secondary-color;
+        align-content: center;
+    }
+
+    margin-left: $pad;
+    margin-right: $pad;
+    margin-top: 10rem;
+}

@@ -144,6 +144,16 @@ main#work {
     text-decoration: underline;
     color: #eece1a; }
 
+body.git {
+  margin-left: 15rem;
+  margin-right: 15rem;
+  margin-top: 10rem; }
+  body.git .icon {
+    text-align: center; }
+  body.git h1 {
+    color: #eece1a;
+    align-content: center; }
+
 * {
   box-sizing: border-box; }
 
@@ -216,9 +226,12 @@ main {
       main h1.about {
         margin-top: 5vh; }
   main#about {
-    font-family: 'Roboto', sans-serif; }
-    main#about .lg-heading {
-      font-family: Roboto; }
+    /*
+    font-family: 'Roboto', sans-serif;;
+    .lg-heading {
+      font-family: Roboto;
+    }
+    */ }
 
 .about-info {
   display: grid;
