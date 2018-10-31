@@ -9,6 +9,7 @@
   "author": "Johnson Zhou",
   "license": "MIT",
   "dependencies": {
-    "node-sass": "^4.9.2"
+    "cryptiles": "^4.1.2",
+    "node-sass": "^4.9.4"
   }
 }
