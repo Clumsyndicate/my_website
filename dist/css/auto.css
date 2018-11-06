@@ -1,0 +1,42 @@
+.img img {
+  height: 10rem; }
+
+main h1 {
+  margin-bottom: 4rem; }
+  main h1 .text-secondary {
+    color: #555; }
+
+main#Auto {
+  text-align: center; }
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  padding: 4rem; }
+
+header {
+  color: #000; }
+
+a {
+  color: #000;
+  text-decoration: none; }
+
+.menu {
+  text-align: center;
+  padding: 1rem; }
+
+.nav-item {
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+  font-size: 25px;
+  padding: 1rem 0;
+  text-decoration: none;
+  transition: all 0.5s ease-out;
+  padding: 1rem; }
+  .nav-item:hover {
+    color: #555; }
+
+h1 {
+  text-align: center; }
+  h1 .text-secondary {
+    font-weight: bold; }

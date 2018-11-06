@@ -1,0 +1,65 @@
+$primary-color: #fff;
+$secondary-color: #555;
+
+@mixin easeOut {
+    transition: all 0.5s ease-out;
+}
+
+.img {
+    img {
+        height: 10rem;
+    }
+}
+main {
+    h1 {
+        margin-bottom: 4rem;
+        .text-secondary {
+            color: #555;
+        }
+    }
+    &#Auto {
+        text-align: center;
+    }
+}
+
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    padding: 4rem;
+}
+
+header {
+    color: #000;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+.menu {
+    text-align: center;
+    padding: 1rem;
+}
+
+.nav-item {
+    text-decoration: none;
+    display: inline-block;
+      position: relative;
+      font-size: 25px;
+      padding: 1rem 0;
+      text-decoration: none;
+      @include easeOut;
+
+      &:hover {
+        color: $secondary-color;
+      }
+      padding: 1rem;
+}
+
+h1 {
+    .text-secondary {
+        font-weight: bold;
+    }
+    text-align: center;
+}

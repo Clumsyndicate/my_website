@@ -3,6 +3,7 @@
 @import 'mobile';
 @import 'work';
 @import 'github';
+@import 'paper';
 
 @mixin easeOut {
   transition: all 0.5s ease-out;
@@ -16,14 +17,16 @@
       background-size: cover;
       background-position: center;
 
-      &:after {
+      &::after {
         content:'';
-        position: absolute;
+        position: fixed;
         top: 0;
         right: 0;
         width: 100%;
         height: 100%;
+        background-size: cover;
         background: rgba($primary-color, $background-opacity);
+        background-attachment: fixed;
         z-index: -1;
       }
     }
