@@ -1,8 +1,17 @@
 .img img {
   height: 10rem; }
 
+.img2 img {
+  width: 50vw; }
+
+main .title {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-areas: 'img text'; }
+
 main h1 {
-  margin-bottom: 4rem; }
+  margin-bottom: 4rem;
+  width: 60vw; }
   main h1 .text-secondary {
     color: #555; }
 
@@ -11,7 +20,8 @@ main#Auto {
 
 body {
   font-family: 'Open Sans', sans-serif;
-  padding: 4rem; }
+  margin-left: 4rem;
+  margin-right: 4rem; }
 
 header {
   color: #000; }
@@ -29,14 +39,12 @@ a {
   display: inline-block;
   position: relative;
   font-size: 25px;
-  padding: 1rem 0;
+  padding: 0 1rem;
   text-decoration: none;
   transition: all 0.5s ease-out;
   padding: 1rem; }
   .nav-item:hover {
     color: #555; }
 
-h1 {
-  text-align: center; }
-  h1 .text-secondary {
-    font-weight: bold; }
+h1 .text-secondary {
+  font-weight: bold; }

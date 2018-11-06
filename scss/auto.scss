@@ -9,13 +9,29 @@ $secondary-color: #555;
     img {
         height: 10rem;
     }
+    // float: left;
 }
+.img2 {
+    img {
+        width: 50vw;
+    }
+}
+
 main {
+    .title {
+        display: grid;
+        grid-gap: 1rem;
+        grid-template-areas: 
+        'img text';
+        //grid-template-columns: repeat(2, 1fr);
+    }
     h1 {
         margin-bottom: 4rem;
         .text-secondary {
             color: #555;
         }
+        //float: left;
+        width: 60vw;
     }
     &#Auto {
         text-align: center;
@@ -25,7 +41,8 @@ main {
 
 body {
     font-family: 'Open Sans', sans-serif;
-    padding: 4rem;
+    margin-left: 4rem;
+    margin-right: 4rem;
 }
 
 header {
@@ -47,7 +64,7 @@ a {
     display: inline-block;
       position: relative;
       font-size: 25px;
-      padding: 1rem 0;
+      padding: 0 1rem;
       text-decoration: none;
       @include easeOut;
 
@@ -61,5 +78,5 @@ h1 {
     .text-secondary {
         font-weight: bold;
     }
-    text-align: center;
+    //text-align: center;
 }
