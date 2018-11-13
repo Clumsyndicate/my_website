@@ -8,10 +8,15 @@ main#paper {
                 margin-top: 2rem;
             }
             img {
-                width: 35vw;
+                height: 40vh;
             }
         }
+        padding: 1rem;
+        height: auto;
+        overflow: auto;
         text-align: center;
-        
+        display: inline-block;
+        width: 100%;
     }
+
 }

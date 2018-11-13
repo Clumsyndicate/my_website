@@ -163,7 +163,12 @@ body.git {
   color: #eece1a; }
 
 main#paper .imgs {
-  text-align: center; }
+  padding: 1rem;
+  height: auto;
+  overflow: auto;
+  text-align: center;
+  display: inline-block;
+  width: 100%; }
   main#paper .imgs .img {
     float: left;
     width: 35vw;
@@ -171,7 +176,7 @@ main#paper .imgs {
     main#paper .imgs .img p {
       margin-top: 2rem; }
     main#paper .imgs .img img {
-      width: 35vw; }
+      height: 40vh; }
 
 * {
   box-sizing: border-box; }
