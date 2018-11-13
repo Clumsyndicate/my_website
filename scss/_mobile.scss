@@ -40,6 +40,12 @@
       height: 150px;
     }
   }
+
+  body.git {
+    margin-top: 5rem;
+    margin-left: 10rem;
+    margin-right: 10rem;
+  }
 }
 
 @include mediaSm {

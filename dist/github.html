@@ -16,25 +16,25 @@
     <div class="icon">
         <i class="fab fa-github fa-4x"></i>
     </div>
-    <h1 id="toc_0">My Github resources</h1>
+    <h1 id="toc_0">AR-Calculator</h1>
 
-<p>On <a href="https://github.com/Clumsyndicate">my github page</a>, I&#39;ve posted a number of projects that I&#39;ve worked on over the past few years. Being mainly a physics student, please bear with the shabbiness of my collection.</p>
+<p><a href="https://github.com/Clumsyndicate/AR-Calculator">The AR Calculator</a> is an iOS application that graphs lines and planes in the 3D space that ARKit provides to intuitively view the different 3d equations. It takes equations of both scalar and vector form.</p>
 
-<h1 id="toc_1">AR-Calculator</h1>
-
-<p>The AR Calculator is an iOS application that graphs lines and planes in the 3D space that ARKit provides to intuitively view the different 3d equations. It takes equations of both scalar and vector form.</p>
-
-<h2 id="toc_2">Installation</h2>
+<h2 id="toc_1">Installation</h2>
 
 <p>Intall Xcode IDE on MacOS. Clone this project and open AR-Calculator.xcodeproj. You will have to provide your own personal developer license to run the project.</p>
 
-<h2 id="toc_3">Understanding the workings of the AR Calculator</h2>
+<h2 id="toc_2">Understanding the workings of the AR Calculator</h2>
 
-<h3 id="toc_4">Draw a line from a scalar equation in 3D space</h3>
+<h3 id="toc_3">Draw a line from a scalar equation in 3D</h3>
 
-<p>\(\frac{x-x_0}{a}=\frac{y-y_0}{b}=\frac{z-z_0}{c}\)</p>
+<p>\(\frac{x-x_0}{a}=\frac{y-y_0}{b}=\frac{z-z_0}{c}\)<br/>
+The above equation is the scalar form of a line in 3-dimensional Cartesian coordinate system. The user will input six parameters, and AR Calculator will graph the line in an AR-simulated coordinate system.</p>
 
-<p>The above equation is the scalar form of a line in 3-dimensional Cartesian coordinate system. The user will input six parameters, and AR Calculator will graph the line in an AR-simulated coordinate system.</p>
+<h3 id="toc_4">Draw a plane from a cartesian equation in 3D</h3>
+
+<p>\(ax+by+cz=d\)<br/>
+where vector \(\vec{n}=\begin{pmatrix} a \\ b \\ c \end{pmatrix}\) is the normal vector of the plane. </p>
 
 <h2 id="toc_5">Basics of ARKit</h2>
 
@@ -44,9 +44,26 @@
 
 <p>The three axes are drawn with geometries as SCNCylinder. The default cylinder is upright, which is the y axis in the ARSceneView. So the x axis and the z axis are simply rotated 90 degrees in their respective directions. </p>
 
-<h3 id="toc_7">Drawing the line</h3>
+<h3 id="toc_7">Drawing a line</h3>
 
-<p>The AR Calculator draws a line given in a Cartesian equation from a starting point \(K(x_k, y_k, z_k)\), which is the closest point between the line and the origin of the three-dimensional coordinate system. The position of k could be obtained </p>
+<p>The AR Calculator draws a line given in a Cartesian equation from a starting point \(K(x_k, y_k, z_k)\), which is the closest point between the line and the origin of the three-dimensional coordinate system. The position of \(K\) as the starting point could be determined.</p>
+
+<p>In the line equation, we introduce a \(k\), with \(x_0, y_0, z_0, a, b, c\) as user inputs.</p>
+
+<h1 id="toc_8">\(\frac{x-x_0}{a}=\frac{y-y_0}{b}=\frac{z-z_0}{c}=k\)</h1>
+
+<p>Consequently<br/>
+\(\begin{cases} x=ak+x_0 \\ y=bk+y_0 \\ z=cz+z_0 \end{cases}\tag{1}\)<br/>
+We want to know the vector pointing towards the closest point \(\vec{K}\), which satisfies<br/>
+\(\vec{K} \cdot \begin{pmatrix} a \\ b \\ c \end{pmatrix}=0\)<br/>
+Since \(\vec{K}\) is on the line, <br/>
+\(\vec{K}= \begin{pmatrix} ak+x_0 \\ bk+y_0 \\  cz+z_0\end{pmatrix}\)<br/>
+\(\vec{K} \cdot \begin{pmatrix} a \\ b \\ c \end{pmatrix}=a^2k+x_0a+b^2k+y_0b+c^2k+z_0c=0\)<br/>
+Therefore, we have</p>
+
+<h1 id="toc_9">\(k=-\frac{x_0a+y_0b+z_0c}{a^2+b^2+c^2}\)</h1>
+
+<p>Since all quantities in this expression of \(k\) is known, \(k\) could be calculated and substituted into \(\ref{1}\)</p>
 
 
 </body>
