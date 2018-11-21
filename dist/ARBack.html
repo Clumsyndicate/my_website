@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js" integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans|Roboto|Source+Sans+Pro" rel="stylesheet">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="shortcut icon" type="image/x-icon" href="img/Logo_1.png" />
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129288545-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129288545-1');
+</script>
+  <title>My Github Works</title>
+</head>
+
+
+<body id="bg-img" class="git">
+    <h1 id="toc_0">Auto Auth - How it works</h1>
+
+<p>Auto Auth is open source on Github. <a href="https://github.com/Clumsyndicate">My Github Account</a> has two repositories. The front end being <a href="https://github.com/Clumsyndicate/AutoAuth">AutoAuth</a> and the back end being <a href="https://github.com/Clumsyndicate/autoAppPy2">autoAppPy2</a>.</p>
+
+<h2 id="toc_1">Backend - Python</h2>
+
+<p>In the autoAppPy2 repository, the file <code>auth.py</code> contain the python code main python code that generate and send a request for login. In the folder <code>dist/</code>, <code>auth/</code> contain the <a href="http://www.pyinstaller.org/">pyinstaller</a> executable, which is wrapped in a swift front-end.<br/>
+Since all macOS systems have python preinstalled, <em>pyinstaller</em> handily encapsulate all the dependencies used in the python script into a folder of executable. IN the <code>dist/auth/</code> folder, a unix executable <code>auth</code> is run when performing the login.</p>
+
+<p>Essentials of the scripts</p>
+
+<ol>
+<li>Take in username and password as arguments.</li>
+<li>Detect the mac and ip address of host Mac. </li>
+<li>Fill all the information into a http request form. </li>
+<li>Send the request</li>
+</ol>
+
+<hr/>
+
+<p>The details are, expectedly, a bit more complicated than that. </p>
+
+<p>First, the url to send the request to has to be determined. Using Google Chrome&#39;s inspector tool, we can monitor the internet traffic and see the address that the request is sent to. In my case, the address is <br/>
+<code>https://auth.ykpaoschool.cn/portalAuthAction.do</code><br/>
+<br><br/>
+Python would report a SSL error without a certificate. Do the following to disable SSL certificate.</p>
+
+<pre><code class="language-text">try:
+    _create_unverified_https_context = ssl._create_unverified_context
+except AttributeError:
+    # Legacy Python that doesn&#39;t verify HTTPS certificates by default
+    pass
+else:
+    # Handle target environment that doesn&#39;t support HTTPS verification
+    ssl._create_default_https_context = _create_unverified_https_context
+</code></pre>
+
+<p>I used a python library <a href="https://pypi.org/project/netifaces/">netifaces</a>, which offers a convenient set of methods to deal with basic network interfaces.<br/>
+<code>import netifaces</code></p>
+
+<p>To find the mac and ip address</p>
+
+<pre><code class="language-text">mac = netifaces.ifaddresses(&#39;en0&#39;)[netifaces.AF_LINK][0][&#39;addr&#39;]
+ip = netifaces.ifaddresses(&#39;en0&#39;)[netifaces.AF_INET][0][&#39;addr&#39;]
+</code></pre>
+
+<p>Use python&#39;s <code>import request</code> and <code>import urllib</code> to encode and send http request.<br/>
+A request is composed of a header and a form. They are both json files that can be written as a dictionary in Python.</p>
+
+<p>Header:</p>
+
+<pre><code class="language-text">h = {
+    &quot;POST&quot;: &quot;/portalAuthAction.do HTTP/1.1&quot;,
+    &quot;Host&quot;: &quot;auth.ykpaoschool.cn&quot;,
+    &quot;Connection&quot;: &quot;keep-alive&quot;,
+    &quot;Content-Length&quot;: &quot;645&quot;,
+    &quot;Cache-Control&quot;: &quot;max-age=0&quot;,
+    &quot;Origin&quot;: &quot;https://auth.ykpaoschool.cn&quot;,
+    &quot;Upgrade-Insecure-Requests&quot;: &quot;1&quot;,
+    &quot;Content-Type&quot;: &quot;application/x-www-form-urlencoded&quot;,
+    &quot;User-Agent&quot;: &quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36&quot;,
+    &quot;Accept&quot;: &quot;text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8&quot;,
+    &quot;Referer&quot;: &quot;https://auth.ykpaoschool.cn/portal.do?wlanuserip=10.2.188.12&amp;wlanacname=hh1u6p&amp;mac=f0:18:98:5e:ba:a7&amp;vlan=185&amp;url=http://iciba.com/&amp;radnum=530848&amp;rand=5a01a279&quot;,
+    &quot;Accept-Encoding&quot;: &quot;gzip, deflate, br&quot;,
+    &quot;Accept-Language&quot;: &quot;en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7&quot;,
+    &quot;Cookie&quot;: &quot;_ga=GA1.2.710262873.1479180774; JSESSIONID=6317AD9C18A46D6ECB69F451B499C65E&quot;
+}
+</code></pre>
+
+<p>Form:</p>
+
+<pre><code class="language-text">form = {
+    &quot;wlanuserip&quot;: ip,
+    &quot;wlanacname&quot;: &quot;hh1u6p&quot;,
+    &quot;wlanclp&quot;: &quot;192.168.186.2&quot;,
+    &quot;vlan&quot;: &quot;185&quot;,
+    &quot;mac&quot;: mac,
+    &quot;version&quot;: &quot;0&quot;,
+    &quot;authkey&quot;: &quot;ykpao&quot;,
+    &quot;url&quot;: &quot;http://iciba.com&quot;,
+    &quot;userid&quot;: &quot;&quot;,
+    &quot;passwd&quot;: &quot;&quot;,
+    &quot;authkey&quot;: &quot;ykpao&quot;,
+    &quot;auth_type&quot;: &quot;PAP&quot;,
+    &quot;version&quot;: &quot;0&quot;,
+    &quot;usertime&quot;: &quot;0&quot;,
+    &quot;listpasscode&quot;: &quot;0&quot;,
+    &quot;listgetpass&quot;: &quot;0&quot;,
+    &quot;getpasstype&quot;: &quot;0&quot;,
+    &quot;randstr&quot;: &quot;8437&quot;,
+}
+</code></pre>
+
+<pre><code class="language-text">ip_e = urllib.urlencode({&quot;wlanuserip&quot;: ip})
+mac_e = urllib.urlencode({&quot;mac&quot;: mac})
+d = ip_e + &quot;&amp;wlanacname=hh1u6p&amp;chal_id=&amp;chal_vector=&amp;auth_type=PAP&amp;seq_id=&amp;req_id=&amp;wlanacIp=192.168.186.2&amp;ssid=&amp;vlan=185&amp;&quot; + mac_e + &quot;&amp;message=&amp;bank_acct=&amp;isCookies=&amp;version=0&amp;authkey=ykpao&amp;url=&amp;usertime=0&amp;listpasscode=0&amp;listgetpass=0&amp;getpasstype=0&amp;randstr=8437&amp;domain=&amp;isRadiusProxy=false&amp;usertype=0&amp;isHaveNotice=0&amp;times=12&amp;weizhi=0&amp;smsid=0&amp;freeuser=&amp;freepasswd=&amp;listwxauth=0&amp;templatetype=1&amp;tname=2&amp;logintype=0&amp;act=&amp;is189=false&amp;terminalType=&amp;checkterminal=true&amp;portalpageid=1&amp;listfreeauth=0&amp;viewlogin=1&amp;userid=&quot; + username + &quot;&amp;twocode=0&amp;alipayappid=&amp;useridtemp=&quot; + username + &quot;&amp;passwd=&quot; + password + &quot;&amp;wxname=&amp;wxuser=&quot;
+</code></pre>
+
+<p>To be frank, I cheated a bit. I just copied the encoded rest of the already encoded from Chrome inspector header, added the ip and mac address (encoded). Either way, it works.</p>
+
+<pre><code class="language-text">session = requests.Session()
+s = session.post(url, data=d, verify=False, headers=h)
+</code></pre>
+
+<p>To see if the login is successful, you may need the return webpage.</p>
+
+<pre><code class="language-text">r = requests.post(url, data=d, verify=False, headers=h)
+print(r.status_code, r.reason)
+print(r.text[:300] + &#39;...&#39;)
+print(r.headers) &#39;&#39;&#39;
+</code></pre>
+
+<p>See how the front end <a href="front.html" class="link">AutoAuth</a> works.</p>
+
+
+</body>
